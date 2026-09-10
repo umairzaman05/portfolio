@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { useScrollMotion } from './use-scroll-motion';
+import { Portrait } from './portrait';
 
 const email = 'mdumairzama@gmail.com';
 const resume = '/Md_Umair_Uz_Zaman_Resume.pdf';
@@ -53,19 +54,12 @@ export default function Home() {
   const time=useSyncExternalStore(subscribeClock,clockSnapshot,()=>'IST');
   const progressRef=useScrollMotion(motion);
   const [copied,setCopied]=useState(false),[copyError,setCopyError]=useState(false),[activeSection,setActiveSection]=useState('work');
-  const markRef=useRef<HTMLDivElement>(null),resetCopy=useRef<ReturnType<typeof setTimeout>|null>(null);
+  const resetCopy=useRef<ReturnType<typeof setTimeout>|null>(null);
   useEffect(()=>{
     const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)setActiveSection(entry.target.id);},{rootMargin:'-15% 0px -55% 0px'});document.querySelectorAll('section[id]').forEach(section=>observer.observe(section));
     return()=>{observer.disconnect();if(resetCopy.current)clearTimeout(resetCopy.current);};
   },[]);
   useEffect(()=>{document.documentElement.classList.toggle('dark',dark);},[dark]);
-  useEffect(()=>{
-    const mark=markRef.current;if(!mark||!motion||!window.matchMedia('(pointer: fine)').matches)return;let frame=0;const point={x:0,y:0};
-    const update=()=>{const box=mark.getBoundingClientRect();if(box.bottom<0||box.top>innerHeight){frame=0;return;}const x=Math.max(-1,Math.min(1,(point.x-box.left-box.width/2)/(innerWidth/2))),y=Math.max(-1,Math.min(1,(point.y-box.top-box.height/2)/(innerHeight/2)));mark.style.setProperty('--rx',`${-y*13}deg`);mark.style.setProperty('--ry',`${x*18}deg`);mark.style.setProperty('--px',`${50+x*28}%`);mark.style.setProperty('--py',`${50+y*28}%`);frame=0;};
-    const move=(event:PointerEvent)=>{if(event.pointerType==='touch')return;point.x=event.clientX;point.y=event.clientY;if(!frame)frame=requestAnimationFrame(update);};const reset=()=>{mark.style.setProperty('--rx','0deg');mark.style.setProperty('--ry','0deg');};
-    window.addEventListener('pointermove',move,{passive:true});window.addEventListener('blur',reset);document.documentElement.addEventListener('pointerleave',reset);
-    return()=>{window.removeEventListener('pointermove',move);window.removeEventListener('blur',reset);document.documentElement.removeEventListener('pointerleave',reset);cancelAnimationFrame(frame);reset();};
-  },[motion]);
   function toggleTheme(){const next=!dark;const apply=()=>{document.documentElement.classList.toggle('dark',next);document.documentElement.dataset.themePreference=next?'dark':'light';try{localStorage.setItem('umair-theme',next?'dark':'light');}catch{}window.dispatchEvent(new Event('umair-theme'));};const doc=document as Document&{startViewTransition?:(fn:()=>void)=>unknown};if(motion&&doc.startViewTransition)doc.startViewTransition(apply);else apply();}
   async function copyEmail(){try{await navigator.clipboard.writeText(email);setCopied(true);setCopyError(false);if(resetCopy.current)clearTimeout(resetCopy.current);resetCopy.current=setTimeout(()=>setCopied(false),2500);}catch{setCopyError(true);}}
 
@@ -73,7 +67,7 @@ export default function Home() {
     <header className="site-header"><a className="wordmark" href="#top" aria-label="Umair Zaman, back to top">uz<span>✳</span></a><nav aria-label="Main navigation">{['work','about','contact'].map(id=><a key={id} href={`#${id}`} className={activeSection===id?'active':''}>{id[0].toUpperCase()+id.slice(1)}</a>)}</nav><button className="theme-button" aria-label={`Switch to ${dark?'light':'dark'} mode`} onClick={toggleTheme}>{dark?<Sun size={19}/>:<Moon size={19}/>}</button></header>
     <main id="main"><section id="top" className="hero">
       <div className="hero-topline"><span className="location"><MapPin size={13}/> Bengaluru, India <span className="clock">{time}</span></span><span className="edition">PORTFOLIO / 2026</span></div>
-      <div className="hero-intro"><div className="hero-copy"><p className="greeting">Hi, I’m</p><h1>Umair Zaman<span className="accent-dot">.</span></h1><p className="hero-role">Generative AI engineer,<br/><span>with a product mindset.</span></p></div><div className="identity-wrap"><div className="identity-mark" ref={markRef} aria-label="Umair Zaman monogram"><div className="identity-grid"/><span className="identity-letters">uz<span>✳</span></span><span className="identity-cross cross-top">+</span><span className="identity-cross cross-bottom">+</span></div><span className="identity-caption">IDEA → SYSTEM → IMPACT</span></div></div>
+      <div className="hero-intro"><div className="hero-copy"><p className="greeting">Hi, I’m</p><h1>Umair Zaman<span className="accent-dot">.</span></h1><p className="hero-role">Generative AI engineer,<br/><span>with a product mindset.</span></p></div><Portrait motion={motion}/></div>
       <p className="hero-description">I turn operational problems into practical AI systems. My work connects agents, automation, and product thinking—from the first workflow to the evidence that it works.</p><div className="current-role"><span className="status-dot"/><span>Currently building at <strong>The Binary Labs</strong></span></div><div className="hero-actions"><a href="#work" className="primary-action">Explore my work <ArrowDown size={16}/></a><a href={resume} download className="quiet-action">Download résumé <Download size={16}/></a></div><div className="hero-footnote"><span>AGENTIC AI</span><span>WORKFLOW AUTOMATION</span><span>INTELLIGENT QA</span></div>
     </section>
     <section id="work" className="work-section"><SectionTitle number="01" title="Selected work" aside="From intent to execution"/>
