@@ -15,7 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Md Umair Uz Zaman — Generative AI Engineer',
   description: 'Generative AI engineer with a product mindset. Explore Umair Zaman’s work in agentic workflows, intelligent QA, and practical AI automation.',
-  metadataBase: new URL('https://umair-zaman-ai.astral-dace-5909.chatgpt.site'),
   openGraph: { title: 'Umair Zaman — AI Engineer', description: 'Practical AI systems. Agentic workflows. Product thinking.', type: 'website' },
 };
 
