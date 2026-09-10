@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import NextImage from 'next/image';
 import { Switch } from '@/components/ui/switch';
 
 // Native vector display masks isolate each bust from the atlas artboard.
@@ -95,9 +96,9 @@ export function Portrait({ motion }: { motion: boolean }) {
   return <div className="portrait-wrap">
     <div className="portrait-stage" ref={portrait}>
       <div className="portrait-halo" aria-hidden="true" />
-      <div className={`portrait-image ${ready ? 'portrait-loaded' : ''}`} role="img" aria-label={`Portrait of Umair Zaman${shades ? ' wearing sunglasses' : ''}`} />
+      <NextImage unoptimized src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E" className={`portrait-image ${ready ? 'portrait-loaded' : ''}`} alt={`Portrait of Umair Zaman${shades ? ' wearing sunglasses' : ''}`} width={210} height={210} />
     </div>
-    <label className="portrait-controls"><span>Shades</span><Switch checked={shades} onCheckedChange={setShades} aria-label="Portrait sunglasses" disabled={!ready} /></label>
+    <label className="portrait-controls" htmlFor="portrait-shades"><span>Shades</span><Switch id="portrait-shades" checked={shades} onCheckedChange={setShades} aria-label="Portrait sunglasses" disabled={!ready} /></label>
     <span className="portrait-caption">{motion ? 'A LITTLE HUMAN, A LITTLE AI' : 'HELLO, I’M UMAIR'}</span>
   </div>;
 }
