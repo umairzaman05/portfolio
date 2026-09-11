@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 export function useScrollMotion(enabled: boolean) {
   const progressRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('.section-heading, .featured-project, .product-work, .about-grid, .experience-item, .toolkit-tabs, .education, .contact-top, .contact-section > h2, .contact-section > p, .email-row, .social-links, .site-footer'));
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('.section-heading, .work-explorer, .ecosystem-note, .build-method, .featured-project, .product-work, .about-grid, .experience-item, .toolkit-tabs, .education, .contact-top, .contact-section > h2, .contact-section > p, .email-row, .social-links, .site-footer'));
     const reset = () => targets.forEach(element => { element.classList.remove('reveal-pending'); element.style.removeProperty('--reveal-delay'); });
     let frame = 0;
     const update = () => {
@@ -18,7 +18,7 @@ export function useScrollMotion(enabled: boolean) {
     const queue = () => { if (!frame) frame = requestAnimationFrame(update); };
     update(); addEventListener('scroll', queue, { passive: true }); addEventListener('resize', queue);
     const sizeObserver = new ResizeObserver(queue); sizeObserver.observe(document.body);
-    const cards = Array.from(document.querySelectorAll<HTMLElement>('.featured-project, .product-work'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.work-explorer, .build-method, .featured-project, .product-work'));
     const illuminate = (event: PointerEvent) => {
       if (!enabled || event.pointerType === 'touch') return;
       const card=event.currentTarget as HTMLElement;const box=card.getBoundingClientRect();
