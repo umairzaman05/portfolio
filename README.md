@@ -28,11 +28,19 @@ Loyalty & rewards system integrated across superapps.
 
 ---
 
-## 🛠️ What This Repo Will Contain
-- Product Requirement Documents (PRDs)
-- Workflow Diagrams
-- Automation Playbooks
-- System Design Concepts
+## Portfolio website
+
+This repository contains Umair's interactive portfolio, including a cursor-responsive portrait, scroll animations, glass effects, company logos, project stories, and a downloadable résumé.
+
+### Run locally
+
+Use Node.js 22.13 or later, then run `npm ci` and `npm run dev`.
+
+### Deploy with Netlify
+
+Import this repository in Netlify and deploy the `main` branch. The included `netlify.toml` sets the build command to `node scripts/build-netlify.mjs` and publishes `dist/client`. No application secrets or environment variables are required.
+
+For a manual deployment, run the build command and upload only `dist/client`.
 
 ---
 
