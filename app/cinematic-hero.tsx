@@ -61,7 +61,7 @@ export function CinematicHero({ motion, time }: { motion: boolean; time: string 
       <div className="hero-spotlight" aria-hidden="true" />
       <div className="hero-orbit" aria-hidden="true"><span /><span /></div>
       <div className="hero-portrait-scroll"><div className="hero-portrait-pointer">
-        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-editorial.png'} alt="Umair Zaman" width={1086} height={1448} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
+        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-professional.png'} alt="Umair Zaman" width={1086} height={1448} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
       </div></div>
       <div className="hero-editorial-copy">
         <p className="hero-eyebrow">HI, I’M UMAIR ZAMAN <span>↗</span></p>
