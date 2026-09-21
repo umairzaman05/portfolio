@@ -61,15 +61,15 @@ export function CinematicHero({ motion, time }: { motion: boolean; time: string 
       <div className="hero-spotlight" aria-hidden="true" />
       <div className="hero-orbit" aria-hidden="true"><span /><span /></div>
       <div className="hero-portrait-scroll"><div className="hero-portrait-pointer">
-        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-professional.png'} alt="Umair Zaman" width={1086} height={1448} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
+        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-studio.png'} alt="Umair Zaman" width={1086} height={1448} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
       </div></div>
       <div className="hero-editorial-copy">
         <p className="hero-eyebrow">HI, I’M UMAIR ZAMAN <span>↗</span></p>
-        <h1><span className="sr-only">Umair Zaman — Generative AI engineer with a product mindset.</span><span key={active} className="hero-changing-title" aria-hidden="true">{chapters[active].title}</span></h1>
+        <h1><span className="sr-only">Umair Zaman | Generative AI engineer with a product mindset.</span><span key={active} className="hero-changing-title" aria-hidden="true">{chapters[active].title}</span></h1>
         <p className="hero-profession">Generative AI engineer.<br/>With a product mindset.</p>
       </div>
       <div className="hero-side-story"><span className="eyebrow">{chapters[active].tag}</span><p key={active}>{chapters[active].text}</p><span className="hero-role-tag"><span className="status-dot" /> THE BINARY HOLDINGS<br/><span className="labs-line">× THE BINARY LABS</span></span></div>
-      <div className="hero-scene-bottom"><a href="#work" className="scroll-invitation"><span className="scroll-invitation-icon"><ArrowDown size={17} /></span><span>SCROLL TO EXPLORE<br/><small>A LITTLE HUMAN. A LITTLE AI.</small></span></a><div className="hero-cta-pair"><a href="#work" className="primary-action">Selected work <ArrowUpRight size={16}/></a><a className="quiet-action" href="/Md_Umair_Uz_Zaman_Resume.pdf" download>Résumé <Download size={15}/></a></div></div>
+      <div className="hero-scene-bottom"><a href="#work" className="scroll-invitation"><span className="scroll-invitation-icon"><ArrowDown size={17} /></span><span>SCROLL TO EXPLORE<br/><small>A LITTLE HUMAN. A LITTLE AI.</small></span></a><div className="hero-cta-pair"><a href="#work" className="primary-action">Selected work <ArrowUpRight size={16}/></a><a className="quiet-action" href="/Md_Umair_Uz_Zaman_Resume.pdf" download>Resume <Download size={15}/></a></div></div>
       <div className="hero-chapters" aria-hidden="true">{chapters.map((item,i)=><span className={active === i ? 'current' : ''} key={item.label}><b>0{i+1}</b> {item.label}</span>)}<i /></div>
     </div>
   </section>;

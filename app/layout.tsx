@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Md Umair Uz Zaman — Generative AI Engineer',
+  title: 'Md Umair Uz Zaman | Generative AI Engineer',
   description: 'Generative AI engineer with a product mindset. Explore Umair Zaman’s work in agentic workflows, intelligent QA, and practical AI automation.',
-  openGraph: { title: 'Umair Zaman — AI Engineer', description: 'Practical AI systems. Agentic workflows. Product thinking.', type: 'website' },
+  openGraph: { title: 'Umair Zaman | AI Engineer', description: 'Practical AI systems. Agentic workflows. Product thinking.', type: 'website' },
 };
 
 export default function RootLayout({
