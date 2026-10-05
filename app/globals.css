@@ -31,3 +31,20 @@ main>.contact-section{margin-top:110px;padding-top:50px!important;border-top:1px
 [data-motion=off] *,[data-motion=off] *::before,[data-motion=off] *::after{animation:none!important}.portfolio-root[data-motion=off] .scroll-reveal{transition:none}.expertise-marquee[data-motion=off]>div{animation:none}.portfolio-root[data-motion=off] .hero-portrait-pointer{transform:none!important}.portfolio-root[data-motion=off] .hero-orbit{transform:none!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.cinematic-hero{height:100svh;min-height:660px}.hero-scene{position:relative}.scroll-reveal{opacity:1;transform:none}.expertise-marquee>div{animation:none}::view-transition-old(root),::view-transition-new(root){animation:none}}
 @media print{.site-header,.chapter-rail,.scroll-progress,.hero-portrait-scroll,.hero-orbit,.hero-spotlight,.hero-ghost-name,.expertise-marquee,.hero-chapters,.motion-button{display:none!important}.cinematic-hero,.hero-scene{height:auto!important;min-height:0!important}.hero-editorial-copy,.hero-side-story,.hero-scene-bottom,.hero-scene-top{position:relative;inset:auto;width:auto;max-width:none;margin:20px}.hero-editorial-copy h1{font-size:40px}.scroll-reveal{opacity:1;transform:none}main>section:not(.cinematic-hero){padding-top:30px}.story-project{grid-template-columns:1fr}.work-explorer,.story-diagram,.company-logos>a{break-inside:avoid;backdrop-filter:none}.hero-changing-title{animation:none}}
+/* Photographic color and quiet orbital motion. */
+.hero-portrait-asset{filter:saturate(.94) contrast(.98)}
+.hero-signal-field{position:absolute;pointer-events:none;z-index:0;left:50%;top:16%;width:min(53vw,760px);transform:translateX(-50%);color:var(--primary);opacity:.38}
+.hero-signal-field svg{width:100%;overflow:visible;stroke:currentColor;stroke-width:.65}
+.hero-signal-field svg>circle,.hero-signal-field svg>path{opacity:.22}
+.signal-sweep{transform-origin:300px 300px;animation:signal-orbit 28s linear infinite}
+.signal-sweep circle:last-child{fill:currentColor;stroke:none}
+.signal-reverse{animation-direction:reverse;animation-duration:36s;opacity:.6}
+.signal-label{position:absolute;bottom:1%;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-geist-mono),monospace;font-size:8px;letter-spacing:.15em}
+@keyframes signal-orbit{to{transform:rotate(360deg)}}
+.story-diagram{position:relative;overflow:hidden}
+.story-diagram::after{content:'';position:absolute;pointer-events:none;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 30%,color-mix(in srgb,var(--primary) 5%,transparent) 48%,transparent 65%);background-size:250% 100%;animation:glass-travel 14s ease-in-out infinite;opacity:.65}
+@keyframes glass-travel{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.motion-outside,.motion-outside *, .motion-outside::after{animation-play-state:paused!important}
+@media(max-width:900px){.hero-signal-field{top:29%;left:64%;width:75vw}}
+@media(max-width:650px){.hero-signal-field{top:34%;left:65%;width:96vw}.signal-label{display:none}}
+@media print{.hero-signal-field{display:none}}

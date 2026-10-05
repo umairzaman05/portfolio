@@ -18,6 +18,15 @@ export function useScrollMotion(enabled: boolean) {
     const queue = () => { if (!frame) frame = requestAnimationFrame(update); };
     update(); addEventListener('scroll', queue, { passive: true }); addEventListener('resize', queue);
     const sizeObserver = new ResizeObserver(queue); sizeObserver.observe(document.body);
+    const animated = Array.from(document.querySelectorAll<HTMLElement>('.hero-signal-field, .story-diagram'));
+    const visible = new Set<Element>();
+    const refreshAnimations = () => animated.forEach(element => element.classList.toggle('motion-outside', !enabled || document.hidden || !visible.has(element)));
+    const animationObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) visible.add(entry.target); else visible.delete(entry.target); });
+      refreshAnimations();
+    });
+    animated.forEach(element => animationObserver.observe(element));
+    document.addEventListener('visibilitychange', refreshAnimations);
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.work-explorer, .build-method, .featured-project, .product-work'));
     const illuminate = (event: PointerEvent) => {
       if (!enabled || event.pointerType === 'touch') return;
@@ -40,7 +49,7 @@ export function useScrollMotion(enabled: boolean) {
       });
       document.addEventListener('focusin', revealFocus);
     } else reset();
-    return () => { reset(); observer?.disconnect(); sizeObserver.disconnect(); cancelAnimationFrame(frame); removeEventListener('scroll', queue); removeEventListener('resize', queue); document.removeEventListener('focusin', revealFocus); cards.forEach(card=>card.removeEventListener('pointermove',illuminate)); };
+    return () => { reset(); observer?.disconnect(); animationObserver.disconnect(); document.removeEventListener('visibilitychange', refreshAnimations); animated.forEach(element => element.classList.remove('motion-outside')); sizeObserver.disconnect(); cancelAnimationFrame(frame); removeEventListener('scroll', queue); removeEventListener('resize', queue); document.removeEventListener('focusin', revealFocus); cards.forEach(card=>card.removeEventListener('pointermove',illuminate)); };
   }, [enabled]);
   return progressRef;
 }

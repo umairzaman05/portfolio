@@ -60,8 +60,9 @@ export function CinematicHero({ motion, time }: { motion: boolean; time: string 
       <div className="hero-ghost-name" aria-hidden="true">UMAIR ZAMAN</div>
       <div className="hero-spotlight" aria-hidden="true" />
       <div className="hero-orbit" aria-hidden="true"><span /><span /></div>
+      <div className="hero-signal-field" aria-hidden="true"><svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="238"/><circle cx="300" cy="300" r="195"/><path d="M62 300H538M300 62V538"/><g className="signal-sweep"><circle cx="300" cy="300" r="238" strokeDasharray="75 1420"/><circle cx="538" cy="300" r="4"/></g><g className="signal-sweep signal-reverse"><circle cx="300" cy="300" r="195" strokeDasharray="40 1185"/><circle cx="105" cy="300" r="3"/></g></svg><span className="signal-label">CONTEXT → INTELLIGENCE → ACTION</span></div>
       <div className="hero-portrait-scroll"><div className="hero-portrait-pointer">
-        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-studio.png'} alt="Umair Zaman" width={1086} height={1448} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
+        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-natural.png'} alt="Umair Zaman" width={1086} height={1448} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
       </div></div>
       <div className="hero-editorial-copy">
         <p className="hero-eyebrow">HI, I’M UMAIR ZAMAN <span>↗</span></p>
