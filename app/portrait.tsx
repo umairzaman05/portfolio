@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import NextImage from 'next/image';
-import { Switch } from '@/components/ui/switch';
+
 
 // Small dead zone and hysteresis keep poses stable near the portrait's center.
 function axisPose(value: number, previous: number) {
@@ -72,7 +72,8 @@ export function Portrait({ motion }: { motion: boolean }) {
       <div className="portrait-halo" aria-hidden="true" />
       <NextImage unoptimized src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E" className={`portrait-image ${ready ? 'portrait-loaded' : ''}`} alt={`Portrait of Umair Zaman${shades ? ' wearing sunglasses' : ''}`} width={210} height={210} />
     </div>
-    <label className="portrait-controls" htmlFor="portrait-shades"><span>Shades</span><Switch id="portrait-shades" checked={shades} onCheckedChange={setShades} aria-label="Portrait sunglasses" disabled={!ready} /></label>
+    <div className="portrait-controls"><button type="button" className="portrait-shades-button" role="switch" aria-checked={shades} aria-label="Portrait sunglasses" disabled={!ready} onClick={() => setShades(value => !value)}><span>Shades</span><i aria-hidden="true"><b /></i></button></div>
     <span className="portrait-caption">{motion ? 'MOVE YOUR CURSOR · SAY HELLO' : 'HELLO, I’M UMAIR'}</span>
   </div>;
 }
+

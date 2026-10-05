@@ -61,3 +61,16 @@ main>.contact-section{margin-top:110px;padding-top:50px!important;border-top:1px
 @media(max-width:650px){.hero-portrait-scroll{left:58%;top:375px;width:205px;height:auto}.portrait-controls{margin-top:7px}.portrait-caption{font-size:7px}}
 @media(max-width:360px){.hero-portrait-scroll{top:355px;width:185px}}
 @media(hover:none){.portrait-caption{display:none}}
+/* Keep the portrait frame stable while the story scrolls. */
+.hero-portrait-scroll{width:190px;top:34%;z-index:4}
+.hero-portrait-pointer{transform:none!important}
+.portrait-shades-button{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 10px;cursor:pointer;border:0;background:none;color:inherit;font:inherit}
+.portrait-shades-button>i{display:block;width:34px;height:20px;border-radius:20px;background:var(--border);padding:2px}
+.portrait-shades-button b{display:block;width:16px;height:16px;border-radius:50%;background:var(--foreground);transition:transform .18s}
+.portrait-shades-button[aria-checked=true]>i{background:var(--primary)}
+.portrait-shades-button[aria-checked=true] b{transform:translateX(14px);background:var(--primary-foreground)}
+.portrait-shades-button:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:8px}
+.portrait-shades-button:disabled{opacity:.5;cursor:wait}
+@media(max-width:900px){.hero-portrait-scroll{width:180px;top:365px}}
+@media(max-width:650px){.hero-portrait-scroll{width:145px;top:390px}}
+@media(max-width:360px){.hero-portrait-scroll{width:135px;top:365px}}

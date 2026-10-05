@@ -30,25 +30,25 @@ export function CinematicHero({ motion, time }: { motion: boolean; time: string 
         trigger: scene, start: 'top top', end: 'bottom bottom', scrub: .7,
         onUpdate: self => { setChapter(Math.min(2, Math.floor(self.progress * 3))); scene.style.setProperty('--story-progress', String(self.progress)); },
       } })
-        .to('.hero-portrait-scroll', { x: '+=45', y: 22, scale: 1.06, rotation: 2, ease: 'none' }, 0)
+
         .to('.hero-orbit', { rotation: 75, scale: 1.12, ease: 'none' }, 0)
         .to('.hero-ghost-name', { xPercent: -9, opacity: .035, ease: 'none' }, 0);
 
-      const moveX = gsap.quickTo('.hero-portrait-pointer', 'x', { duration: .9, ease: 'power3.out' });
-      const moveY = gsap.quickTo('.hero-portrait-pointer', 'y', { duration: .9, ease: 'power3.out' });
+
+
       const onMove = (event: PointerEvent) => {
         if (event.pointerType !== 'mouse') return;
         const rect = scene.getBoundingClientRect();
         if (rect.bottom < 0) return;
         const x = event.clientX / innerWidth - .5;
-        const y = event.clientY / innerHeight - .5;
-        moveX(x * 18); moveY(y * 12);
+
+
         scene.style.setProperty('--spot-x', `${50 + x * 8}%`);
       };
-      const reset = () => { moveX(0); moveY(0); };
+
       scene.addEventListener('pointermove', onMove, { passive: true });
-      scene.addEventListener('pointerleave', reset);
-      return () => { scene.removeEventListener('pointermove', onMove); scene.removeEventListener('pointerleave', reset); };
+
+      return () => { scene.removeEventListener('pointermove', onMove); };
     });
     return () => media.revert();
   }, { scope: root, dependencies: [motion], revertOnUpdate: true });
@@ -80,5 +80,6 @@ export function ExpertiseMarquee({ motion }: { motion: boolean }) {
   const words = ['AGENTIC AI', 'PRODUCT THINKING', 'WORKFLOW AUTOMATION', 'INTELLIGENT QA'];
   return <div className="expertise-marquee" data-motion={motion ? 'on' : 'off'} aria-label={words.join(', ')}><div aria-hidden="true">{[0,1].map(copy=><span key={copy}>{words.map(word=><span key={word}>{word}<i>✳</i></span>)}</span>)}</div></div>;
 }
+
 
 
