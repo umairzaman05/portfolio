@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Image from 'next/image';
+import { Portrait } from './portrait';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -18,8 +18,8 @@ const chapters = [
 export function CinematicHero({ motion, time }: { motion: boolean; time: string }) {
   const root = useRef<HTMLElement>(null);
   const [chapter, setChapter] = useState(0);
-  const [portraitState, setPortraitState] = useState<'loading' | 'ready' | 'fallback'>('loading');
-  const [portraitFailed, setPortraitFailed] = useState(false);
+
+
 
   useGSAP(() => {
     if (!root.current || !motion) return;
@@ -62,7 +62,7 @@ export function CinematicHero({ motion, time }: { motion: boolean; time: string 
       <div className="hero-orbit" aria-hidden="true"><span /><span /></div>
       <div className="hero-signal-field" aria-hidden="true"><svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="238"/><circle cx="300" cy="300" r="195"/><path d="M62 300H538M300 62V538"/><g className="signal-sweep"><circle cx="300" cy="300" r="238" strokeDasharray="75 1420"/><circle cx="538" cy="300" r="4"/></g><g className="signal-sweep signal-reverse"><circle cx="300" cy="300" r="195" strokeDasharray="40 1185"/><circle cx="105" cy="300" r="3"/></g></svg><span className="signal-label">CONTEXT → INTELLIGENCE → ACTION</span></div>
       <div className="hero-portrait-scroll"><div className="hero-portrait-pointer">
-        <Image className={`hero-portrait-asset ${portraitState === 'loading' ? 'portrait-loading' : ''}`} src={portraitFailed ? '/portraits/original.jpeg' : '/portraits/hero-soft.png'} alt="Umair Zaman" width={1024} height={1536} unoptimized priority onLoad={() => setPortraitState('ready')} onError={() => { setPortraitFailed(true); setPortraitState('fallback'); }} />
+        <Portrait motion={motion} />
       </div></div>
       <div className="hero-editorial-copy">
         <p className="hero-eyebrow">HI, I’M UMAIR ZAMAN <span>↗</span></p>
@@ -80,4 +80,5 @@ export function ExpertiseMarquee({ motion }: { motion: boolean }) {
   const words = ['AGENTIC AI', 'PRODUCT THINKING', 'WORKFLOW AUTOMATION', 'INTELLIGENT QA'];
   return <div className="expertise-marquee" data-motion={motion ? 'on' : 'off'} aria-label={words.join(', ')}><div aria-hidden="true">{[0,1].map(copy=><span key={copy}>{words.map(word=><span key={word}>{word}<i>✳</i></span>)}</span>)}</div></div>;
 }
+
 

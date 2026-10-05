@@ -48,3 +48,16 @@ main>.contact-section{margin-top:110px;padding-top:50px!important;border-top:1px
 @media(max-width:900px){.hero-signal-field{top:29%;left:64%;width:75vw}}
 @media(max-width:650px){.hero-signal-field{top:34%;left:65%;width:96vw}.signal-label{display:none}}
 @media print{.hero-signal-field{display:none}}
+/* Circular portrait with the original cursor-controlled poses. */
+.hero-portrait-scroll{left:55%;top:28%;bottom:auto;width:300px;height:auto;pointer-events:auto}
+.portrait-wrap{width:100%;text-align:center}
+.portrait-stage{position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;background:#d4e6ed;--face-x:20%;--face-y:50%;box-shadow:0 20px 70px -35px #0008}
+.portrait-halo{display:none}
+.portrait-image{display:block;width:100%;height:100%;background:url('/portraits/original.jpeg') 55% 39% / 260% no-repeat}
+.portrait-image.portrait-loaded{position:absolute;width:119.05%;height:119.05%;max-width:none;left:-9.525%;top:-4.762%;background-image:url('/portraits/directions-clean.png');background-size:600% 300%;background-position:var(--face-x) var(--face-y)}
+.portrait-controls{display:flex;justify-content:center;align-items:center;gap:10px;color:var(--muted-foreground);font-size:12px;min-height:44px;margin-top:12px;cursor:pointer}
+.portrait-caption{font:8px var(--font-geist-mono),monospace;letter-spacing:.05em;color:var(--quiet)}
+@media(max-width:900px){.hero-portrait-scroll{left:68%;top:340px;width:260px;height:auto}}
+@media(max-width:650px){.hero-portrait-scroll{left:58%;top:375px;width:205px;height:auto}.portrait-controls{margin-top:7px}.portrait-caption{font-size:7px}}
+@media(max-width:360px){.hero-portrait-scroll{top:355px;width:185px}}
+@media(hover:none){.portrait-caption{display:none}}
